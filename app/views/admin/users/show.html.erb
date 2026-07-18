@@ -1,0 +1,223 @@
+<%# app/views/admin/users/show.html.erb %>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+    :root {
+        --pico-font-family-sans-serif: Verdana, sans-serif;
+        --pico-background-color: #f0e6ff;
+        --pico-color: #9d84b7;
+        --pico-h2-color: #9d84b7;
+        --pico-primary: #c8b6ff;
+        --pico-primary-hover: #9d84b7;
+    }
+
+    body {
+        background-color: #f0e6ff;
+        margin: 0;
+        font-family: Verdana, sans-serif;
+        color: #9d84b7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .show-container {
+        max-width: 550px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Peri Character Layout Animation Styling */
+    .hero-octopus-container {
+        position: relative;
+        width: 120px;
+        height: 140px;
+        margin: 0 auto 0.25rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .octo-head {
+        width: 90px;
+        height: 80px;
+        background: #c8b6ff;
+        border-radius: 45px 45px 18px 18px;
+        position: relative;
+        box-shadow: inset -6px -6px 0 rgba(157, 132, 183, 0.3);
+        z-index: 2;
+    }
+
+    .octo-eye {
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border-radius: 50%;
+        position: absolute;
+        top: 40px;
+        box-shadow: 0 2px 4px rgba(157, 132, 183, 0.2);
+    }
+
+    .octo-eye::after {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: #9d84b7;
+        border-radius: 50%;
+        top: 5px;
+        right: 2px;
+    }
+
+    .eye-left { left: 20px; }
+    .eye-right { right: 20px; }
+
+    .octo-tentacles {
+        display: flex;
+        gap: 6px;
+        margin-top: -12px;
+        z-index: 1;
+    }
+
+    .tentacle {
+        width: 16px;
+        background: #c8b6ff;
+        border-radius: 10px;
+        box-shadow: inset -2px -2px 0 rgba(157, 132, 183, 0.3);
+        transform-origin: top center;
+        animation: swim 1.5s ease-in-out infinite alternate;
+    }
+
+    .t1 { animation-delay: 0.0s; height: 36px; }
+    .t2 { animation-delay: 0.2s; height: 44px; }
+    .t3 { animation-delay: 0.4s; height: 44px; }
+    .t4 { animation-delay: 0.6s; height: 36px; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+    }
+
+    @keyframes swim {
+        0% { transform: rotate(-8deg) translateY(0); }
+        100% { transform: rotate(8deg) translateY(-4px); }
+    }
+
+    .ollie-caption {
+        text-align: center;
+        color: #9d84b7;
+        font-style: italic;
+        font-weight: bolder;
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Inspect Card Mechanics */
+    article.profile-card {
+        background-color: #ffffff;
+        border: 2px solid #c8b6ff;
+        border-radius: 1rem;
+        box-shadow: 0 8px 16px rgba(157, 132, 183, 0.1);
+        padding: 2.5rem;
+        text-align: left;
+    }
+
+    h2 {
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .data-row {
+        margin-bottom: 1.25rem;
+        border-bottom: 1px dashed #f0e6ff;
+        padding-bottom: 0.75rem;
+    }
+
+    .data-row:last-of-type {
+        border-bottom: none;
+    }
+
+    .label-text {
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: #c8b6ff;
+        display: block;
+    }
+
+    .value-text {
+        font-size: 1.1rem;
+        color: #9d84b7;
+        word-break: break-all;
+    }
+
+    .action-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    .action-links a {
+        color: #9d84b7;
+        text-decoration: underline;
+    }
+
+    .action-links a:hover {
+        color: #c8b6ff;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="show-container">
+
+    <!-- Mascot Asset -->
+    <div class="hero-octopus-container">
+      <div class="octo-head"><div class="octo-eye eye-left"></div><div class="octo-eye eye-right"></div></div>
+      <div class="octo-tentacles">
+        <div class="tentacle t1"></div><div class="tentacle t2"></div><div class="tentacle t3"></div><div class="tentacle t4"></div>
+      </div>
+    </div>
+    <p class="ollie-caption">Moi, c'est Peri.</p>
+
+    <!-- Inspection Metadata Card Block -->
+    <article class="profile-card">
+      <h2>Account Parameters</h2>
+
+      <div class="data-row">
+        <span class="label-text">Unique Identifier / Email</span>
+        <span class="value-text"><strong><%= @user.email %></strong></span>
+      </div>
+
+      <div class="data-row">
+        <span class="label-text">Security Clearance Access</span>
+        <span class="value-text">
+          <%= @user.admin? ? "Administrator Privileges Granted" : "Standard Personnel User" %>
+        </span>
+      </div>
+
+      <div class="data-row">
+        <span class="label-text">Record Registration Timestamp</span>
+        <span class="value-text" style="font-size: 0.95rem;">
+          <%= @user.created_at.strftime("%B %d, %Y at %H:%M:%S") %>
+        </span>
+      </div>
+
+      <div class="action-links">
+        <%= link_to "Edit Account Settings", edit_admin_user_path(@user) %>
+        <%= link_to "Back to full log", admin_users_path %>
+      </div>
+    </article>
+
+  </main>
+</body>

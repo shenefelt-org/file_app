@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thinnifer Loading</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --card: #ffffff;
+            --text: #1f1f1f;
+            --muted: #666;
+            --accent: #7c3aed;
+            --track: #e7e7ef;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f3f4f7 100%);
+        }
+
+        .wrap {
+            width: min(420px, 92vw);
+            background: var(--card);
+            border: 1px solid #ececf3;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+            text-align: center;
+        }
+
+        .icon-area {
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.5rem;
+            height: 180px;
+        }
+
+        /* Bathroom-door women icon style */
+        .women-icon {
+            position: relative;
+            width: 120px;
+            height: 160px;
+            animation: thinPulse 2.2s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+
+        .head {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 42px;
+            height: 42px;
+            background: #222;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .body {
+            position: absolute;
+            top: 44px;
+            left: 50%;
+            width: 48px;
+            height: 64px;
+            background: #222;
+            transform: translateX(-50%);
+            clip-path: polygon(50% 0%, 100% 18%, 78% 100%, 22% 100%, 0% 18%);
+            border-radius: 12px;
+        }
+
+        .skirt {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            width: 72px;
+            height: 58px;
+            background: #222;
+            transform: translateX(-50%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .arm {
+            position: absolute;
+            top: 52px;
+            width: 16px;
+            height: 54px;
+            background: #222;
+            border-radius: 999px;
+        }
+
+        .arm.left {
+            left: 25px;
+            transform: rotate(18deg);
+        }
+
+        .arm.right {
+            right: 25px;
+            transform: rotate(-18deg);
+        }
+
+        .leg {
+            position: absolute;
+            top: 132px;
+            width: 16px;
+            height: 34px;
+            background: #222;
+            border-radius: 999px;
+        }
+
+        .leg.left {
+            left: 42px;
+            transform: rotate(8deg);
+        }
+
+        .leg.right {
+            right: 42px;
+            transform: rotate(-8deg);
+        }
+
+        @keyframes thinPulse {
+            0% {
+                transform: scaleX(1.08);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scaleX(0.78);
+                opacity: 0.88;
+            }
+        }
+
+        .title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            letter-spacing: 0.2px;
+        }
+
+        .progress {
+            height: 12px;
+            background: var(--track);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 35%;
+            background: linear-gradient(90deg, var(--accent), #a855f7);
+            border-radius: 999px;
+            animation: slide 1.4s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-30%);
+                width: 28%;
+            }
+
+            100% {
+                transform: translateX(220%);
+                width: 40%;
+            }
+        }
+
+        .sub {
+            margin-top: 0.85rem;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <div class="icon-area">
+            <div class="women-icon" aria-label="Female bathroom sign style loading icon">
+                <div class="head"></div>
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+                <div class="body"></div>
+                <div class="skirt"></div>
+                <div class="leg left"></div>
+                <div class="leg right"></div>
+            </div>
+        </div>
+
+        <div class="title">Thinnifer loading</div>
+        <div class="progress" aria-hidden="true"></div>
+        <div class="sub">Please wait...</div>
+    </main>
+</body>
+
+</html>

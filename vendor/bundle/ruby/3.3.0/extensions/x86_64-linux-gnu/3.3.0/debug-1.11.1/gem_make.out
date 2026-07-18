@@ -1,0 +1,19 @@
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/debug-1.11.1/ext/debug
+/usr/bin/ruby3.3 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-d8x9wk sitelibdir\=./.gem.20260718-15688-d8x9wk clean
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-d8x9wk sitelibdir\=./.gem.20260718-15688-d8x9wk
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-d8x9wk sitelibdir\=./.gem.20260718-15688-d8x9wk install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20260718-15688-d8x9wk/debug
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-d8x9wk sitelibdir\=./.gem.20260718-15688-d8x9wk clean

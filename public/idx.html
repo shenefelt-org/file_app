@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="/periwinkle-octi-logo.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <style>
+        /* 1. Override Pico defaults with your Periwinkle palette */
+        :root {
+            --pico-font-family-sans-serif: Verdana, sans-serif;
+            --pico-background-color: #f0e6ff;
+            --pico-color: #9d84b7;
+            --pico-h1-color: #9d84b7;
+            --pico-primary: #c8b6ff;
+            --pico-primary-hover: #9d84b7;
+        }
+
+        /* 2. Centering layout and background */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: #f0e6ff;
+            /* Lightest Periwinkle */
+            margin: 0;
+            font-family: Verdana, sans-serif;
+        }
+
+        /* 3. Periwinkle Octopus Hero Styles */
+        .hero-octopus-container {
+            position: relative;
+            width: 120px;
+            height: 140px;
+            margin: 0 auto 0.25rem auto;
+            /* Very tight bottom margin to hug the caption */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .octo-head {
+            width: 90px;
+            height: 80px;
+            background: #c8b6ff;
+            /* Medium Periwinkle */
+            border-radius: 45px 45px 18px 18px;
+            position: relative;
+            box-shadow: inset -6px -6px 0 rgba(157, 132, 183, 0.3);
+            z-index: 2;
+        }
+
+        .octo-eye {
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            box-shadow: 0 2px 4px rgba(157, 132, 183, 0.2);
+        }
+
+        .octo-eye::after {
+            content: '';
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #9d84b7;
+            /* Dark Periwinkle */
+            border-radius: 50%;
+            top: 5px;
+            right: 2px;
+        }
+
+        .eye-left {
+            left: 20px;
+            color: var(--pico-color);
+        }
+
+        .eye-right {
+            right: 20px;
+        }
+
+        .octo-tentacles {
+            display: flex;
+            gap: 6px;
+            margin-top: -12px;
+            z-index: 1;
+        }
+
+        .tentacle {
+            width: 16px;
+            background: #c8b6ff;
+            /* Medium Periwinkle */
+            border-radius: 10px;
+            box-shadow: inset -2px -2px 0 rgba(157, 132, 183, 0.3);
+            transform-origin: top center;
+            animation: swim 1.5s ease-in-out infinite alternate;
+        }
+
+        .t1 {
+            animation-delay: 0.0s;
+            height: 36px;
+        }
+
+        .t2 {
+            animation-delay: 0.2s;
+            height: 44px;
+        }
+
+        .t3 {
+            animation-delay: 0.4s;
+            height: 44px;
+        }
+
+        .t4 {
+            animation-delay: 0.6s;
+            height: 36px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes swim {
+            0% {
+                transform: rotate(-8deg) translateY(0);
+            }
+
+            100% {
+                transform: rotate(8deg) translateY(-4px);
+            }
+        }
+
+        /* Ollie's Caption Text */
+        .ollie-caption {
+            text-align: center;
+            color: #9d84b7;
+            font-style: italic;
+            font-weight: bolder;
+            font-size: 0.85rem;
+            /* Shrunk down to a caption size */
+            opacity: 0.7;
+            /* Softened so it doesn't distract */
+            margin-top: 0;
+            margin-bottom: 2rem;
+            /* Creates a clean break before the h1 */
+        }
+
+        /* 4. Typography */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #9d84b7;
+        }
+
+        h1 span.highlight {
+            color: #c8b6ff;
+            /* Medium Periwinkle for contrast */
+        }
+
+        p.subtitle {
+            color: #9d84b7;
+            opacity: 0.8;
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 300;
+        }
+
+        /* 5. Custom Button */
+        .pico-btn {
+            background-color: #c8b6ff;
+            border-color: #c8b6ff;
+            color: #ffffff;
+            border-radius: 2rem;
+            padding: 0.75rem 2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .pico-btn:hover {
+            background-color: #9d84b7;
+            border-color: #9d84b7;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+        <article style="background: transparent; border: none; box-shadow: none;">
+
+            <div class="hero-octopus-container">
+                <div class="octo-head">
+                    <div class="octo-eye eye-left"></div>
+                    <div class="octo-eye eye-right"></div>
+                </div>
+                <div class="octo-tentacles">
+                    <div class="tentacle t1"></div>
+                    <div class="tentacle t2"></div>
+                    <div class="tentacle t3"></div>
+                    <div class="tentacle t4"></div>
+                </div>
+            </div>
+
+            <p class="ollie-caption">Moi, c'est Peri.</p>
+
+            <h1>G<span class="highlight">S</span></h1>
+
+            <!-- <p class="subtitle">
+                GS
+            </p> -->
+
+        </article>
+    </main>
+
+</body>
+
+</html>

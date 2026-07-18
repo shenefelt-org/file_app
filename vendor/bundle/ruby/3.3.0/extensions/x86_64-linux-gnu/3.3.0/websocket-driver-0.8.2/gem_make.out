@@ -1,0 +1,18 @@
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.2/ext/websocket-driver
+/usr/bin/ruby3.3 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.2/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-tb9wvc sitelibdir\=./.gem.20260718-15688-tb9wvc clean
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.2/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-tb9wvc sitelibdir\=./.gem.20260718-15688-tb9wvc
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.2/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-tb9wvc sitelibdir\=./.gem.20260718-15688-tb9wvc install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20260718-15688-tb9wvc
+
+current directory: /var/www/otter.shenefelt.xyz/file_app/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.8.2/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260718-15688-tb9wvc sitelibdir\=./.gem.20260718-15688-tb9wvc clean

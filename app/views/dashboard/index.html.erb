@@ -1,0 +1,320 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+    /* 1. Override Pico defaults with your Periwinkle palette */
+    :root {
+        --pico-font-family-sans-serif: Verdana, sans-serif;
+        --pico-background-color: #f0e6ff;
+        --pico-color: #9d84b7;
+        --pico-h2-color: #9d84b7;
+        --pico-h3-color: #9d84b7;
+        --pico-primary: #c8b6ff;
+        --pico-primary-hover: #9d84b7;
+        --pico-primary-underline: rgba(200, 182, 255, 0.5);
+    }
+
+    /* 2. Layout and background */
+    body {
+        background-color: #f0e6ff;
+        margin: 0;
+        font-family: Verdana, sans-serif;
+        color: #9d84b7;
+    }
+
+    .dashboard-container {
+        max-width: 850px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* 3. Periwinkle Octopus Hero Styles */
+    .hero-octopus-container {
+        position: relative;
+        width: 120px;
+        height: 140px;
+        margin: 0 auto 0.25rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .octo-head {
+        width: 90px;
+        height: 80px;
+        background: #c8b6ff;
+        border-radius: 45px 45px 18px 18px;
+        position: relative;
+        box-shadow: inset -6px -6px 0 rgba(157, 132, 183, 0.3);
+        z-index: 2;
+    }
+
+    .octo-eye {
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border-radius: 50%;
+        position: absolute;
+        top: 40px;
+        box-shadow: 0 2px 4px rgba(157, 132, 183, 0.2);
+    }
+
+    .octo-eye::after {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: #9d84b7;
+        border-radius: 50%;
+        top: 5px;
+        right: 2px;
+    }
+
+    .eye-left { left: 20px; }
+    .eye-right { right: 20px; }
+
+    .octo-tentacles {
+        display: flex;
+        gap: 6px;
+        margin-top: -12px;
+        z-index: 1;
+    }
+
+    .tentacle {
+        width: 16px;
+        background: #c8b6ff;
+        border-radius: 10px;
+        box-shadow: inset -2px -2px 0 rgba(157, 132, 183, 0.3);
+        transform-origin: top center;
+        animation: swim 1.5s ease-in-out infinite alternate;
+    }
+
+    .t1 { animation-delay: 0.0s; height: 36px; }
+    .t2 { animation-delay: 0.2s; height: 44px; }
+    .t3 { animation-delay: 0.4s; height: 44px; }
+    .t4 { animation-delay: 0.6s; height: 36px; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+    }
+
+    @keyframes swim {
+        0% { transform: rotate(-8deg) translateY(0); }
+        100% { transform: rotate(8deg) translateY(-4px); }
+    }
+
+    .ollie-caption {
+        text-align: center;
+        color: #9d84b7;
+        font-style: italic;
+        font-weight: bolder;
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* 4. Dashboard Elements Styling */
+    h2 {
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .user-status {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        opacity: 0.9;
+    }
+
+    .logout-link {
+        color: #9d84b7;
+        text-decoration: underline;
+        text-decoration-color: var(--pico-primary-underline);
+        font-weight: bold;
+    }
+
+    .logout-link:hover {
+        color: #c8b6ff;
+    }
+
+    /* Pico Card Customization */
+    article.dashboard-card {
+        background-color: #ffffff;
+        border: 2px solid #c8b6ff;
+        border-radius: 1rem;
+        box-shadow: 0 8px 16px rgba(157, 132, 183, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Inputs & Custom Action Buttons */
+    input[type="file"] {
+        border: 2px dashed #c8b6ff;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background-color: #f0e6ff;
+        color: #9d84b7;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .pico-btn {
+        background-color: #c8b6ff;
+        border-color: #c8b6ff;
+        color: #ffffff;
+        border-radius: 2rem;
+        padding: 0.75rem 2rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+        display: inline-block;
+        width: auto;
+        cursor: pointer;
+    }
+
+    .pico-btn:hover {
+        background-color: #9d84b7;
+        border-color: #9d84b7;
+        color: #ffffff;
+    }
+
+    /* Table Styles */
+    .table-container {
+        border: 2px solid #c8b6ff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(157, 132, 183, 0.1);
+        background: #ffffff;
+    }
+
+    table {
+        margin-bottom: 0;
+    }
+
+    thead tr {
+        background-color: #c8b6ff !important;
+    }
+
+    thead th {
+        color: #ffffff !important;
+        font-weight: bold;
+        padding: 14px;
+    }
+
+    tbody td {
+        padding: 14px;
+        vertical-align: middle;
+        color: #9d84b7;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #f0e6ff;
+    }
+
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .file-link {
+        color: #9d84b7;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: var(--pico-primary-underline);
+    }
+
+    .file-link:hover {
+        color: #c8b6ff;
+    }
+
+    .timestamp {
+        font-size: 0.85rem;
+        color: #9d84b7;
+        opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="dashboard-container">
+
+    <!-- Peri Brand Placement -->
+    <div class="hero-octopus-container">
+      <div class="octo-head">
+        <div class="octo-eye eye-left"></div>
+        <div class="octo-eye eye-right"></div>
+      </div>
+      <div class="octo-tentacles">
+        <div class="tentacle t1"></div>
+        <div class="tentacle t2"></div>
+        <div class="tentacle t3"></div>
+        <div class="tentacle t4"></div>
+      </div>
+    </div>
+    <p class="ollie-caption">Moi, c'est Peri.</p>
+
+    <!-- Upload Card Interface -->
+    <article class="dashboard-card">
+      <h2>shenefelt.xyz [ files ten ]</h2>
+      <p class="user-status">
+        Logged in as: <strong><%= current_user.email %></strong> | 
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "logout-link" %>
+      </p>
+      
+      <%= form_with model: @new_upload, url: upload_path, method: :post, local: true do |f| %>
+        <div>
+          <%= f.file_field :file, required: true %>
+        </div>
+        <div style="text-align: center;">
+          <%= f.submit "Upload File to Server", class: "pico-btn" %>
+        </div>
+      <% end %>
+    </article>
+
+    <!-- Document Data Logs -->
+    <h3>Uploaded Library Storage</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>File Link</th>
+            <th>Uploaded By</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @uploaded_files.any? %>
+            <% @uploaded_files.each do |upload| %>
+              <tr>
+                <td><%= link_to upload.original_name, url_for(upload.file), target: "_blank", class: "file-link" %></td>
+                <td><strong><%= upload.user.email %></strong></td>
+                <td class="timestamp"><%= upload.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="3" style="text-align: center; color: #9d84b7; opacity: 0.6; padding: 30px;">
+                No files uploaded in this library yet.
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</body>

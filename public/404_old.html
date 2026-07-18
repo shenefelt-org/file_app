@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>404 - Page Not Found</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0e6ff 0%, #e6d9f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .container-404 {
+      text-align: center;
+      background: white;
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      box-shadow: 0 10px 40px rgba(157, 132, 183, 0.15);
+      max-width: 500px;
+    }
+
+    .bow-container {
+      margin: 2rem 0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bow {
+      position: relative;
+      width: 100px;
+      height: 60px;
+    }
+
+    /* Left loop */
+    .bow-left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: #c8b6ff;
+      border-radius: 50%;
+      animation: wiggle-left 2s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(157, 132, 183, 0.3);
+    }
+
+    /* Right loop */
+    .bow-right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: #d4c5ff;
+      border-radius: 50%;
+      animation: wiggle-right 2s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(157, 132, 183, 0.3);
+    }
+
+    /* Center knot */
+    .bow-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: #9d84b7;
+      border-radius: 50%;
+      z-index: 10;
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes wiggle-left {
+
+      0%,
+      100% {
+        transform: translateY(-50%) rotate(-5deg) scale(1);
+      }
+
+      50% {
+        transform: translateY(-50%) rotate(5deg) scale(1.05);
+      }
+    }
+
+    @keyframes wiggle-right {
+
+      0%,
+      100% {
+        transform: translateY(-50%) rotate(5deg) scale(1);
+      }
+
+      50% {
+        transform: translateY(-50%) rotate(-5deg) scale(1.05);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #9d84b7;
+      margin: 1rem 0 0.5rem 0;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #c8b6ff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    a {
+      background: linear-gradient(135deg, #c8b6ff 0%, #9d84b7 100%);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(157, 132, 183, 0.3);
+    }
+
+    .home-link {
+      background: linear-gradient(135deg, #c8b6ff 0%, #9d84b7 100%);
+    }
+
+    .back-link {
+      background: #e6d9f0;
+      color: #9d84b7;
+      border: 2px solid #c8b6ff;
+    }
+
+    .back-link:hover {
+      background: #d9cde6;
+    }
+
+    @media (max-width: 600px) {
+      .container-404 {
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .bow {
+        transform: scale(0.8);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-404">
+    <div class="bow-container">
+      <div class="bow">
+        <div class="bow-left"></div>
+        <div class="bow-right"></div>
+        <div class="bow-center"></div>
+      </div>
+    </div>
+
+    <h1>404</h1>
+    <div class="subtitle">Nothing here!</div>
+    <p>what you sought, you didn't find.</p>
+
+    <div class="button-group">
+      <a href="/" class="home-link">Go Home</a>
+      <a href="javascript:history.back()" class="back-link">Go Back</a>
+    </div>
+  </div>
+</body>
+
+</html>
