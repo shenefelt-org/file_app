@@ -1,0 +1,270 @@
+<%# app/views/portfolio/index.html.erb %>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+    /* 1. Cohesive Periwinkle Palette Overrides */
+    :root {
+        --pico-font-family-sans-serif: Verdana, sans-serif;
+        --pico-background-color: #f0e6ff;
+        --pico-color: #9d84b7;
+        --pico-h1-color: #9d84b7;
+        --pico-h2-color: #9d84b7;
+        --pico-h3-color: #c8b6ff;
+        --pico-primary: #c8b6ff;
+        --pico-primary-hover: #9d84b7;
+        --pico-primary-underline: rgba(200, 182, 255, 0.5);
+    }
+
+    body {
+        background-color: #f0e6ff;
+        margin: 0;
+        font-family: Verdana, sans-serif;
+        color: #9d84b7;
+    }
+
+    .portfolio-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* 2. Peri Floating Mascot Mechanics */
+    .hero-octopus-container {
+        position: relative;
+        width: 120px;
+        height: 140px;
+        margin: 0 auto 0.25rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .octo-head {
+        width: 90px;
+        height: 80px;
+        background: #c8b6ff;
+        border-radius: 45px 45px 18px 18px;
+        position: relative;
+        box-shadow: inset -6px -6px 0 rgba(157, 132, 183, 0.3);
+        z-index: 2;
+    }
+
+    .octo-eye {
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border-radius: 50%;
+        position: absolute;
+        top: 40px;
+        box-shadow: 0 2px 4px rgba(157, 132, 183, 0.2);
+    }
+
+    .octo-eye::after {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: #9d84b7;
+        border-radius: 50%;
+        top: 5px;
+        right: 2px;
+    }
+
+    .eye-left { left: 20px; }
+    .eye-right { right: 20px; }
+
+    .octo-tentacles {
+        display: flex;
+        gap: 6px;
+        margin-top: -12px;
+        z-index: 1;
+    }
+
+    .tentacle {
+        width: 16px;
+        background: #c8b6ff;
+        border-radius: 10px;
+        box-shadow: inset -2px -2px 0 rgba(157, 132, 183, 0.3);
+        transform-origin: top center;
+        animation: swim 1.5s ease-in-out infinite alternate;
+    }
+
+    .t1 { animation-delay: 0.0s; height: 36px; }
+    .t2 { animation-delay: 0.2s; height: 44px; }
+    .t3 { animation-delay: 0.4s; height: 44px; }
+    .t4 { animation-delay: 0.6s; height: 36px; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+    }
+
+    @keyframes swim {
+        0% { transform: rotate(-8deg) translateY(0); }
+        100% { transform: rotate(8deg) translateY(-4px); }
+    }
+
+    .ollie-caption {
+        text-align: center;
+        color: #9d84b7;
+        font-style: italic;
+        font-weight: bolder;
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    /* 3. Typography & Showroom Layout */
+    .intro-section {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #9d84b7;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 .highlight { color: #c8b6ff; }
+
+    .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Project Cards Customization */
+    article.project-card {
+        background-color: #ffffff;
+        border: 2px solid #c8b6ff;
+        border-radius: 1rem;
+        box-shadow: 0 8px 16px rgba(157, 132, 183, 0.05);
+        padding: 1.75rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    article.project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(157, 132, 183, 0.15);
+    }
+
+    .tech-tag {
+        display: inline-block;
+        background-color: #f0e6ff;
+        color: #9d84b7;
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 0.25rem 0.6rem;
+        border-radius: 0.5rem;
+        margin-right: 0.4rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+
+    /* Link and Nav Utilities */
+    .project-link {
+        color: #9d84b7;
+        font-weight: bold;
+        text-decoration: underline;
+        text-decoration-color: var(--pico-primary-underline);
+    }
+
+    .project-link:hover {
+        color: #c8b6ff;
+    }
+
+    .footer-nav {
+        text-align: center;
+        margin-top: 5rem;
+        font-size: 0.95rem;
+    }
+
+    .footer-nav a {
+        color: #9d84b7;
+        margin: 0 1rem;
+        text-decoration: underline;
+        text-decoration-color: var(--pico-primary-underline);
+    }
+
+    .footer-nav a:hover {
+        color: #c8b6ff;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="portfolio-container">
+
+    <!-- Peri Mascot Presence -->
+    <div class="hero-octopus-container">
+      <div class="octo-head"><div class="octo-eye eye-left"></div><div class="octo-eye eye-right"></div></div>
+      <div class="octo-tentacles">
+        <div class="tentacle t1"></div><div class="tentacle t2"></div><div class="tentacle t3"></div><div class="tentacle t4"></div>
+      </div>
+    </div>
+    <p class="ollie-caption">Moi, c'est Peri.</p>
+
+    <!-- Header Introduction -->
+    <section class="intro-section">
+      <h1>My Developer <span class="highlight">Showcase</span></h1>
+      <p class="subtitle">Full-stack engineering built with elegance, precision, and robust architectures.</p>
+    </section>
+
+    <!-- Pico CSS Responsive Projects Grid Layout -->
+    <div class="grid">
+      
+      <!-- Project 1: Your Files Ten App! -->
+      <article class="project-card">
+        <header style="margin-bottom: 1rem; padding: 0; background: transparent;">
+          <h3 style="margin: 0;">Files Ten Platform</h3>
+        </header>
+        <p style="font-size: 0.9rem; line-height: 1.5;">
+          A secure file storage ecosystem featuring multi-factor authentication checkpoints, server-side data log auditing, and seamless file streaming capabilities.
+        </p>
+        <div style="margin-bottom: 1.25rem;">
+          <span class="tech-tag">Ruby on Rails</span>
+          <span class="tech-tag">Pico CSS</span>
+          <span class="tech-tag">Devise 2FA</span>
+        </div>
+        <footer>
+          <%= link_to "Launch Application →", root_path, class: "project-link" %>
+        </footer>
+      </article>
+
+      <!-- Project 2: Your Go Cloud Uploader! -->
+      <article class="project-card">
+        <header style="margin-bottom: 1rem; padding: 0; background: transparent;">
+          <h3 style="margin: 0;">Go Drive Engine</h3>
+        </header>
+        <p style="font-size: 0.9rem; line-height: 1.5;">
+          A hyper-efficient command-line utility compiled in Go. Features secure background worker patterns to recursively stream local folder trees directly into the Google Drive API.
+        </p>
+        <div style="margin-bottom: 1.25rem;">
+          <span class="tech-tag">Golang</span>
+          <span class="tech-tag">Google Cloud API</span>
+          <span class="tech-tag">Concurrency</span>
+        </div>
+        <footer>
+          <a href="#" class="project-link">View Source Code →</a>
+        </footer>
+      </article>
+
+    </div>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <%= link_to "Access Dashboard Login", new_user_session_path %>
+      <a href="mailto:hello@shenefelt.org">Get In Touch</a>
+    </footer>
+
+  </main>
+</body>
